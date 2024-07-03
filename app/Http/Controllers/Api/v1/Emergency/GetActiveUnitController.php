@@ -13,20 +13,41 @@ class GetActiveUnitController extends Controller
     {
         $active_unit = ActiveUnit::where('user_id', $request->user_id)->get()->first();
 
-        if (!$active_unit) {
+        if (! $active_unit) {
             return response()->json([
-                'success'   => false,
-                'message'   => 'No active unit found for the given user.',
-                'data'      => []
+                'success' => false,
+                'message' => 'No active unit found for the given user.',
+                'data' => [],
             ]);
         }
 
         return response()->json([
-            'success'   => true,
-            'message'   => "",
-            'data'      => [
+            'success' => true,
+            'message' => '',
+            'data' => [
                 new ActiveUnitResource($active_unit),
-            ]
+            ],
+        ]);
+    }
+
+    public function get_active_units(Request $request)
+    {
+        $active_units = ActiveUnit::all();
+
+        if ($active_units->count() == 0) {
+            return response()->json([
+                'success' => true,
+                'message' => 'No active units found.',
+                'data' => [],
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => '',
+            'data' => [
+                ActiveUnitResource::collection($active_units),
+            ],
         ]);
     }
 }

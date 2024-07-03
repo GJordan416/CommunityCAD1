@@ -32,7 +32,7 @@ class GetActiveUnitController extends Controller
 
     public function get_active_units(Request $request)
     {
-        $active_units = ActiveUnit::all();
+        $active_units = ActiveUnit::where('department_type', '!=', 2)->get();
 
         if ($active_units->count() == 0) {
             return response()->json([

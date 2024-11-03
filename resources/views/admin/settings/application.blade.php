@@ -24,9 +24,9 @@
                             then users will make an account then a Staff/Admin must approve them.</p>
                     </div>
                     <select class="w-28 px-1 py-1 mt-2 text-black border rounded-md cursor-pointer focus:outline-none"
-                        id="force_steam_link" name="force_steam_link">
-                        <option @selected(old('force_steam_link', get_setting('force_steam_link')) == true) value="on">On</option>
-                        <option @selected(old('force_steam_link', get_setting('force_steam_link')) == false) value="off">Off</option>
+                        id="members_must_apply" name="members_must_apply">
+                        <option @selected(old('members_must_apply', get_setting('members_must_apply')) == true) value="on">On</option>
+                        <option @selected(old('members_must_apply', get_setting('members_must_apply')) == false) value="off">Off</option>
                     </select>
                 </div>
             </div>

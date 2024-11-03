@@ -17,7 +17,7 @@ class LastLoginCheckMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if ($request->user()) {
-            if ($request->user()->last_login < Carbon::now()->subDays((int) get_setting('days_until_inactive'))) {
+            if ($request->user()->last_login < Carbon::now()->subDays((int) get_setting('days_until_inactive', 7))) {
                 auth()->logout();
 
                 return redirect('/')->with('alerts', [['message' => 'Session expired.', 'level' => 'error']]);
